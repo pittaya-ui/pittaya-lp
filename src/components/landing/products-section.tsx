@@ -20,9 +20,7 @@ export function ProductsSection() {
     () => {
       const sections = gsap.utils.toArray<HTMLElement>(".product-section");
 
-      sections.forEach((section, index) => {
-        const isLeft = index % 2 === 0;
-
+      sections.forEach((section) => {
         gsap.from(section, {
           scrollTrigger: {
             trigger: section,
