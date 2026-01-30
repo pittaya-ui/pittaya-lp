@@ -54,9 +54,7 @@ export function CodeWindow({
         <div className="w-3 h-3 rounded-full bg-[#ff5f56] hover:bg-[#ff5f56]/80 transition-colors" />
         <div className="w-3 h-3 rounded-full bg-[#ffbd2e] hover:bg-[#ffbd2e]/80 transition-colors" />
         <div className="w-3 h-3 rounded-full bg-[#27c93f] hover:bg-[#27c93f]/80 transition-colors" />
-        <div className="ml-2 text-xs text-white/30 font-sans">
-          pittaya-demo.ts
-        </div>
+        <div className="ml-2 text-xs text-white/30 font-sans">pittaya.ts</div>
       </div>
 
       {/* Code Content */}
