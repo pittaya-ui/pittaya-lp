@@ -27,8 +27,12 @@ export const heroContent = {
 export const heroCode = `const pittayaIndex = {
   interface: "Modern & Minimal",
   performance: "Optimized",
-  architecture: ["Next.js 16", "React 19"],
-  
+  architecture: [
+    "Next.js 16",
+    "React 19",
+    "Django",
+    "Python"
+  ], 
   initialize: async () => {
     await loadExperience();
     return "Ready to Ship";
