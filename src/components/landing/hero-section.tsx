@@ -40,10 +40,21 @@ export function HeroSection() {
   );
 
   return (
-    <section
-      ref={containerRef}
-      className="relative overflow-hidden px-8 pt-12 pb-12 lg:pt-24 lg:pb-24"
-    >
+    <section ref={containerRef} className="relative overflow-hidden px-8">
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `
+        linear-gradient(to right, #d1d5db 1px, transparent 1px),
+        linear-gradient(to bottom, #d1d5db 1px, transparent 1px)
+      `,
+          backgroundSize: "32px 32px",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 80% 80% at 100% 0%, #000 50%, transparent 90%)",
+          maskImage:
+            "radial-gradient(ellipse 80% 80% at 100% 0%, #000 50%, transparent 90%)",
+        }}
+      />
       <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
         <div className="flex flex-col items-start gap-6 max-w-2xl">
           <div className="hero-text-element">
@@ -100,7 +111,7 @@ export function HeroSection() {
                   "/PITTAYA-LOGO.PNG",
                   "/UI.png",
                 ]}
-                classNameButton="bg-background text-foreground border border-border/50 shadow-md transition-all font-serif italic text-lg tracking-wide hover:shadow-pittaya/20 hover:shadow-xl"
+                classNameButton="bg-transparent text-foreground border border-border/50 shadow-md transition-all font-serif italic text-lg tracking-wide hover:shadow-pittaya/20 hover:shadow-xl"
                 autoPlay={true}
                 outsideBorderColor="border-primary/10"
                 middleBorderColor="border-primary/30"

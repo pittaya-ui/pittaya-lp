@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 
 import { Button } from "./button";
 
-
 interface OrbitImagesProps {
   title: string;
   buttonText: string;
@@ -132,22 +131,22 @@ export function OrbitImages({
           <div
             className={cn(
               `flex h-[280px] w-[280px] items-center justify-center rounded-full border-2 transition-all duration-500 sm:h-[600px] sm:w-[600px] lg:h-[500px] lg:w-[500px] xl:h-[600px] xl:w-[600px]`,
-              animationProgress > 0.6 && outsideBorderColor
+              animationProgress > 0.6 && outsideBorderColor,
             )}
           >
             <div
               className={cn(
                 `relative flex h-[240px] w-[240px] items-center justify-center rounded-full border-2 transition-all duration-500 sm:h-[480px] sm:w-[480px] lg:h-[420px] lg:w-[420px] xl:h-[500px] xl:w-[500px]`,
-                animationProgress > 0.2 && middleBorderColor
+                animationProgress > 0.2 && middleBorderColor,
               )}
             >
               <div
                 className={cn(
                   "relative flex h-[200px] w-[200px] items-center justify-center rounded-full border-2 p-0.5 sm:h-[400px] sm:w-[400px] lg:h-[340px] lg:w-[340px] xl:h-[400px] xl:w-[400px]",
-                  innerBorderColor
+                  innerBorderColor,
                 )}
               >
-                <div className="relative flex h-full w-full items-center justify-center rounded-full bg-[#ffffff] dark:bg-black">
+                <div className="relative flex h-full w-full items-center justify-center rounded-full bg-transparent dark:bg-black">
                   {images.map((imageSrc, index) => {
                     const baseAngle = getAngleForIndex(index, images.length);
                     const position = getImagePosition(baseAngle);
@@ -189,7 +188,7 @@ export function OrbitImages({
                       variant={"default"}
                       className={cn(
                         "bg-pittaya shadow-pittaya/20 hover:bg-pittaya/80 rounded-full text-white shadow-sm",
-                        classNameButton
+                        classNameButton,
                       )}
                     >
                       {buttonText}
