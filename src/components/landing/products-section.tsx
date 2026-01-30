@@ -1,28 +1,77 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Shield, Terminal } from "lucide-react";
-import { motion } from "framer-motion";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export function ProductsSection() {
+  const containerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const sections = gsap.utils.toArray<HTMLElement>(".product-section");
+
+      sections.forEach((section, index) => {
+        const isLeft = index % 2 === 0;
+
+        gsap.from(section, {
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+        });
+      });
+
+      // Animate title elements
+      gsap.from(".header-element", {
+        scrollTrigger: {
+          trigger: ".header-container",
+          start: "top 80%",
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out",
+      });
+    },
+    { scope: containerRef },
+  );
+
   return (
-    <section id="products" className="py-24 bg-white relative px-8">
+    <section
+      ref={containerRef}
+      id="products"
+      className="py-24 bg-white relative px-8"
+    >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-24">
-          <Badge
-            variant="outline"
-            className="mb-6 py-1.5 px-4 border-primary/20 bg-primary/5 text-primary text-sm font-medium tracking-wide uppercase"
-          >
-            Our Ecosystem
-          </Badge>
-          <h2 className="font-serif text-5xl md:text-6xl font-bold mb-6 text-foreground">
+        <div className="header-container text-center mb-24">
+          <div className="header-element inline-block">
+            <Badge
+              variant="outline"
+              className="mb-6 py-1.5 px-4 border-primary/20 bg-primary/5 text-primary text-sm font-medium tracking-wide uppercase"
+            >
+              Our Ecosystem
+            </Badge>
+          </div>
+          <h2 className="header-element font-serif text-5xl md:text-6xl font-bold mb-6 text-foreground">
             Tools for the <span className="italic text-primary">Bold</span>
           </h2>
-          <p className="text-muted-foreground/80 max-w-2xl mx-auto text-xl leading-relaxed">
+          <p className="header-element text-muted-foreground/80 max-w-2xl mx-auto text-xl leading-relaxed">
             Discover our suite of products designed to empower developers and
             businesses.
           </p>
@@ -30,24 +79,18 @@ export function ProductsSection() {
 
         <div className="flex flex-col gap-32">
           {/* Product 1: Pittaya UI */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="grid lg:grid-cols-2 gap-16 items-center"
-          >
+          <div className="product-section grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative group">
               {/* Abstract background shape */}
-              <div className="absolute -inset-4 bg-gradient-to-tr from-pink-100 to-purple-100 rounded-[2.5rem] -z-10 blur-xl opacity-70 transition-opacity group-hover:opacity-100" />
+              <div className="absolute -inset-4 bg-gradient-to-tr from-pink-100 to-purple-100 rounded-[2.5rem] -z-10 blur-xl opacity-70 transition-opacity group-hover:opacity-100 duration-500" />
 
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border/50 bg-white">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border/50 bg-white transition-transform duration-700 group-hover:scale-[1.02]">
                 <Image
                   src="/UI.png"
                   alt="Pittaya UI Desktop"
                   width={800}
                   height={500}
-                  className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-auto object-cover"
                 />
               </div>
               {/* Mobile Mockup Floating */}
@@ -100,7 +143,7 @@ export function ProductsSection() {
                 </div>
                 <Button
                   size="lg"
-                  className="w-fit text-base px-8 h-12 shadow-lg hover:shadow-xl transition-all"
+                  className="w-fit text-base px-8 h-12 shadow-lg hover:shadow-xl transition-all group"
                   asChild
                 >
                   <Link href="https://ui.pittaya.org/" target="_blank">
@@ -110,16 +153,10 @@ export function ProductsSection() {
                 </Button>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Product 2: AM I ON? */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="grid lg:grid-cols-2 gap-16 items-center"
-          >
+          <div className="product-section grid lg:grid-cols-2 gap-16 items-center">
             <div className="flex flex-col gap-8 lg:pr-8 order-2 lg:order-1">
               <div className="flex items-center gap-4">
                 <div className="p-3 bg-emerald-100/50 rounded-xl border border-emerald-200/50 shadow-sm">
@@ -145,7 +182,7 @@ export function ProductsSection() {
               <div className="pt-2">
                 <Button
                   size="lg"
-                  className="w-fit text-base px-8 h-12 shadow-lg hover:shadow-xl transition-all bg-emerald-600 hover:bg-emerald-700 text-white"
+                  className="w-fit text-base px-8 h-12 shadow-lg hover:shadow-xl transition-all bg-emerald-600 hover:bg-emerald-700 text-white group"
                   asChild
                 >
                   <Link href="https://amion.app/" target="_blank">
@@ -157,7 +194,7 @@ export function ProductsSection() {
             </div>
 
             <div className="relative group order-1 lg:order-2">
-              <div className="absolute -inset-4 bg-gradient-to-tl from-emerald-100 to-teal-50 rounded-[2.5rem] -z-10 blur-xl opacity-70 transition-opacity group-hover:opacity-100" />
+              <div className="absolute -inset-4 bg-gradient-to-tl from-emerald-100 to-teal-50 rounded-[2.5rem] -z-10 blur-xl opacity-70 transition-opacity group-hover:opacity-100 duration-500" />
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border/50 bg-white transform transition-transform duration-700 group-hover:-translate-y-2">
                 <Image
                   src="/AMION.png"
@@ -168,7 +205,7 @@ export function ProductsSection() {
                 />
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

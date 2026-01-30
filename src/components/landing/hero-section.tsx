@@ -1,8 +1,10 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 import { Button } from "@/components/ui/button";
 import { OrbitImages } from "@/components/ui/orbit-images";
@@ -12,39 +14,58 @@ import {
 } from "@/components/ui/announcement-badge";
 
 export function HeroSection() {
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 },
-  };
+  const containerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      tl.from(".hero-text-element", {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+      }).from(
+        ".hero-image-container",
+        {
+          x: 50,
+          opacity: 0,
+          duration: 1.2,
+          scale: 0.95,
+        },
+        "-=0.5",
+      );
+    },
+    { scope: containerRef },
+  );
 
   return (
-    <section className="relative overflow-hidden px-8">
+    <section
+      ref={containerRef}
+      className="relative overflow-hidden px-8 pt-12 pb-12 lg:pt-24 lg:pb-24"
+    >
       <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
-        <motion.div
-          initial="initial"
-          animate="animate"
-          variants={fadeIn}
-          className="flex flex-col items-start gap-6 max-w-2xl"
-        >
-          <AnnouncementContainer variant="default">
-            <AnnouncementTitle>
-              New: AM I ON? is now live!{" "}
-              <ArrowRight className="ml-2 w-4 h-4 inline" />
-            </AnnouncementTitle>
-          </AnnouncementContainer>
-          <h1 className="font-serif text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight text-foreground">
+        <div className="flex flex-col items-start gap-6 max-w-2xl">
+          <div className="hero-text-element">
+            <AnnouncementContainer variant="default">
+              <AnnouncementTitle>
+                New: AM I ON? is now live!{" "}
+                <ArrowRight className="ml-2 w-4 h-4 inline" />
+              </AnnouncementTitle>
+            </AnnouncementContainer>
+          </div>
+          <h1 className="hero-text-element font-serif text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight text-foreground">
             Refining Digital{" "}
             <span className="text-primary italic">Excellence</span>.
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
+          <p className="hero-text-element text-xl text-muted-foreground leading-relaxed max-w-lg">
             We build tools that bridge functionality and luxury. Experience the
             next generation of development with Pittaya.
           </p>
-          <div className="flex flex-wrap gap-4 pt-4">
+          <div className="hero-text-element flex flex-wrap gap-4 pt-4">
             <Button
               size="lg"
-              className="rounded-full shadow-lg hover:shadow-xl transition-all"
+              className="rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95 duration-300"
               asChild
             >
               <Link href="#products">
@@ -54,19 +75,14 @@ export function HeroSection() {
             <Button
               variant="ghost"
               size="lg"
-              className="rounded-full hover:bg-secondary/80"
+              className="rounded-full hover:bg-secondary/80 hover:scale-105 active:scale-95 duration-300"
             >
               <Link href="#team">Who We Are</Link>
             </Button>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative hidden lg:flex justify-center"
-        >
+        <div className="hero-image-container relative hidden lg:flex justify-center">
           {/* Using OrbitImages as a decorative element with shadow */}
           <div className="relative w-full max-w-[500px] aspect-square">
             {/* Shadow div behind OrbitImages */}
@@ -84,7 +100,7 @@ export function HeroSection() {
                   "/PITTAYA-LOGO.PNG",
                   "/UI.png",
                 ]}
-                classNameButton="bg-background text-foreground border border-border/50 shadow-md hover:scale-105 transition-all font-serif italic text-lg tracking-wide"
+                classNameButton="bg-background text-foreground border border-border/50 shadow-md transition-all font-serif italic text-lg tracking-wide hover:shadow-pittaya/20 hover:shadow-xl"
                 autoPlay={true}
                 outsideBorderColor="border-primary/10"
                 middleBorderColor="border-primary/30"
@@ -92,7 +108,7 @@ export function HeroSection() {
               />
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
