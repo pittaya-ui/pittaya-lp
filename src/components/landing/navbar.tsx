@@ -70,7 +70,7 @@ export function Navbar() {
 
         {/* CTA Button */}
         <Button variant="outline" size="sm" className="hidden sm:flex" asChild>
-          <Link href="mailto:contact@pittaya.org">Get in Touch</Link>
+          <Link href="mailto:team@pittaya.org">Get in Touch</Link>
         </Button>
       </div>
     </nav>
