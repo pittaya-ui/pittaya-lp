@@ -7,11 +7,22 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 import { Button } from "@/components/ui/button";
-import { OrbitImages } from "@/components/ui/orbit-images";
+import { CodeWindow } from "@/components/ui/code-window";
 import {
   AnnouncementContainer,
   AnnouncementTitle,
 } from "@/components/ui/announcement-badge";
+
+const HERO_CODE = `const pittayaIndex = {
+  interface: "Modern & Minimal",
+  performance: "Optimized",
+  architecture: ["Next.js 16", "React 19"],
+  
+  initialize: async () => {
+    await loadExperience();
+    return "Ready to Ship";
+  }
+};`;
 
 export function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -40,7 +51,10 @@ export function HeroSection() {
   );
 
   return (
-    <section ref={containerRef} className="relative overflow-hidden px-8">
+    <section
+      ref={containerRef}
+      className="relative overflow-hidden px-8 h-screen flex items-center"
+    >
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -93,31 +107,12 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="hero-image-container relative hidden lg:flex justify-center">
-          {/* Using OrbitImages as a decorative element with shadow */}
-          <div className="relative w-full max-w-[500px] aspect-square">
-            {/* Shadow div behind OrbitImages */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-pittaya rounded-full blur-[100px] opacity-40 z-0" />
+        <div className="hero-image-container relative hidden lg:flex justify-center items-center [perspective:1000px]">
+          <div className="relative w-full max-w-[550px] [transform:rotateY(-5deg)_rotateX(5deg)] hover:[transform:rotateY(0deg)_rotateX(0deg)] transition-transform duration-700 ease-out [transform-style:preserve-3d]">
+            {/* Abstract Glow behind the code window */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-primary/30 rounded-full blur-[100px] -z-10" />
 
-            <div className="relative z-10">
-              <OrbitImages
-                title="Limitless"
-                buttonText="Universe"
-                images={[
-                  "/PITTAYA-LOGO.PNG",
-                  "/AMION.png",
-                  "/UI.png",
-                  "/UI-MIOBILE.png",
-                  "/PITTAYA-LOGO.PNG",
-                  "/UI.png",
-                ]}
-                classNameButton="bg-transparent text-foreground border border-border/50 shadow-md transition-all font-serif italic text-lg tracking-wide hover:shadow-pittaya/20 hover:shadow-xl"
-                autoPlay={true}
-                outsideBorderColor="border-primary/10"
-                middleBorderColor="border-primary/30"
-                innerBorderColor="border-primary/50"
-              />
-            </div>
+            <CodeWindow codeString={HERO_CODE} />
           </div>
         </div>
       </div>
