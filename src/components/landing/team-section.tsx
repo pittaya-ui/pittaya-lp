@@ -1,14 +1,11 @@
 "use client";
 
-import { useRef } from "react";
-import { Github, Twitter } from "lucide-react";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Github, Twitter } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,124 +13,87 @@ const TEAM_MEMBERS = [
   {
     name: "Lucas Ribeiro",
     role: "Co-Founder & Most Beautiful Developer",
-    src: "https://github.com/lucasadsr.png",
+    src: "/lucas.jpeg",
     twitter: "https://x.com/lucasribeirodev",
     github: "https://github.com/lucasadsr",
   },
   {
     name: "Marcos Bueno",
     role: "Co-Founder & The best from Olinda",
-    src: "https://github.com/marcosvbueno.png",
-    twitter: "https://x.com/MarcosBuenoDev",
+    src: "/marcos.jpeg",
+    twitter: "https://x.com/MarcosBuenoDev  ",
     github: "https://github.com/marcosvbueno",
   },
   {
     name: "Jarbas Gouveia",
     role: "Co-Founder & The best from Ibura",
-    src: "https://github.com/jjgouveia.png",
+    src: "/jarbas.jpeg",
     twitter: "https://x.com/jarbas_gouveia",
     github: "https://github.com/jjgouveia",
   },
 ];
 
 export function TeamSection() {
-  const containerRef = useRef<HTMLElement>(null);
-
-  useGSAP(
-    () => {
-      // Header Animation
-      gsap.from(".team-header", {
-        scrollTrigger: {
-          trigger: ".team-header",
-          start: "top 85%",
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-      });
-
-      // Cards Stagger Animation
-      gsap.from(".team-card", {
-        scrollTrigger: {
-          trigger: ".team-grid",
-          start: "top 80%",
-        },
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "back.out(1.7)",
-      });
-
-      // Hover effects
-      const cards = gsap.utils.toArray<HTMLElement>(".team-card");
-      cards.forEach((card) => {
-        const hoverTl = gsap.timeline({ paused: true });
-        hoverTl.to(card, { y: -10, duration: 0.3, ease: "power2.out" });
-
-        card.addEventListener("mouseenter", () => hoverTl.play());
-        card.addEventListener("mouseleave", () => hoverTl.reverse());
-      });
-    },
-    { scope: containerRef },
-  );
-
   return (
     <section
-      ref={containerRef}
       id="team"
       className="py-24 bg-secondary/20 border-t border-border/50"
     >
-      <div className="container mx-auto px-4 text-center">
-        <h2 className="team-header font-serif text-4xl font-bold mb-12">
-          Who is Behind the Business
-        </h2>
-        <div className="team-grid grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-          {TEAM_MEMBERS.map((member, i) => (
-            <div
-              key={i}
-              className="team-card flex flex-col items-center gap-4 p-6 rounded-2xl bg-background border border-border shadow-sm cursor-default"
-            >
-              <Avatar className="w-24 h-24 border-4 border-secondary shadow-inner">
-                <AvatarImage src={member.src || ""} />
-                <AvatarFallback>{member.name[0]}</AvatarFallback>
-              </Avatar>
-              <div>
-                <h3 className="font-sans text-xl font-bold">{member.name}</h3>
-                <p className="text-sm text-muted-foreground uppercase tracking-widest mt-1">
-                  {member.role}
-                </p>
-              </div>
-              <div className="flex gap-2 mt-2">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8 rounded-full hover:bg-secondary transition-colors"
-                  asChild
-                >
-                  <Link
-                    href={member.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Twitter className="w-4 h-4 text-muted-foreground hover:text-foreground" />
-                  </Link>
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8 rounded-full hover:bg-secondary transition-colors"
-                  asChild
-                >
-                  <Link
-                    href={member.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="w-4 h-4 text-muted-foreground hover:text-foreground" />
-                  </Link>
-                </Button>
+      <div className="container px-4 text-center lg:max-w-4xl mx-auto">
+        <div className="mt-12 gap-4 sm:grid sm:grid-cols-2 md:mt-24 justify-between">
+          <div className="sm:w-3/5">
+            <h2 className="text-3xl font-bold sm:text-4xl text-left">
+              Who is Behind the business?
+            </h2>
+          </div>
+          <div className="mt-6 sm:mt-0">
+            <p className="text-justify">
+              During the working process, we perform regular fitting with the
+              client because he is the only person who can feel whether a new
+              suit fits or not.
+            </p>
+          </div>
+        </div>
+        <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 mt-12 md:mt-24">
+          {TEAM_MEMBERS.map((member, index) => (
+            <div key={index} className="group overflow-hidden">
+              <Image
+                className="h-96 w-full rounded-md object-cover object-top grayscale transition-all duration-500 hover:grayscale-0 group-hover:h-[22.5rem] group-hover:rounded-xl"
+                src={member.src}
+                alt="team member"
+                width="826"
+                height="1239"
+              />
+              <div className="px-2 pt-2 sm:pb-0 sm:pt-4">
+                <div className="flex justify-between">
+                  <h3 className="text-base font-medium transition-all duration-500 group-hover:tracking-wider">
+                    {member.name}
+                  </h3>
+                  <span className="text-xs">_0{index + 1}</span>
+                </div>
+                <div className="mt-1 flex items-center justify-between">
+                  <span className="text-muted-foreground inline-block translate-y-6 text-sm opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 text-left">
+                    {member.role}
+                  </span>
+                  <div className="flex gap-3 translate-y-8 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 delay-75">
+                    <Link
+                      href={member.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-primary transition-colors hover:scale-110 transform duration-200"
+                    >
+                      <Twitter className="w-4 h-4" />
+                    </Link>
+                    <Link
+                      href={member.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-primary transition-colors hover:scale-110 transform duration-200"
+                    >
+                      <Github className="w-4 h-4" />
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
