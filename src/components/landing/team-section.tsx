@@ -8,8 +8,33 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const TEAM_MEMBERS = [
+  {
+    name: "Lucas Ribeiro",
+    role: "Co-Founder & Most Beautiful Developer",
+    src: "https://github.com/lucasadsr.png",
+    twitter: "https://x.com/lucasribeirodev",
+    github: "https://github.com/lucasadsr",
+  },
+  {
+    name: "Marcos Bueno",
+    role: "Co-Founder & The best from Olinda",
+    src: "https://github.com/marcosvbueno.png",
+    twitter: "https://x.com/MarcosBuenoDev",
+    github: "https://github.com/marcosvbueno",
+  },
+  {
+    name: "Jarbas Gouveia",
+    role: "Co-Founder & The best from Ibura",
+    src: "https://github.com/jjgouveia.png",
+    twitter: "https://x.com/jarbas_gouveia",
+    github: "https://github.com/jjgouveia",
+  },
+];
 
 export function TeamSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -65,23 +90,7 @@ export function TeamSection() {
           Who is Behind the Business
         </h2>
         <div className="team-grid grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-          {[
-            {
-              name: "Lucas Ribeiro",
-              role: "Founder & Most Beautiful Developer",
-              src: "https://github.com/lucasadsr.png",
-            },
-            {
-              name: "Pittaya Design",
-              role: "Product Design",
-              src: "/PITTAYA-LOGO.PNG",
-            },
-            {
-              name: "Community",
-              role: "Open Source Contributors",
-              src: null,
-            },
-          ].map((member, i) => (
+          {TEAM_MEMBERS.map((member, i) => (
             <div
               key={i}
               className="team-card flex flex-col items-center gap-4 p-6 rounded-2xl bg-background border border-border shadow-sm cursor-default"
@@ -101,15 +110,29 @@ export function TeamSection() {
                   variant="ghost"
                   size="icon"
                   className="h-8 w-8 rounded-full hover:bg-secondary transition-colors"
+                  asChild
                 >
-                  <Twitter className="w-4 h-4 text-muted-foreground hover:text-foreground" />
+                  <Link
+                    href={member.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Twitter className="w-4 h-4 text-muted-foreground hover:text-foreground" />
+                  </Link>
                 </Button>
                 <Button
                   variant="ghost"
                   size="icon"
                   className="h-8 w-8 rounded-full hover:bg-secondary transition-colors"
+                  asChild
                 >
-                  <Github className="w-4 h-4 text-muted-foreground hover:text-foreground" />
+                  <Link
+                    href={member.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Github className="w-4 h-4 text-muted-foreground hover:text-foreground" />
+                  </Link>
                 </Button>
               </div>
             </div>
