@@ -59,25 +59,6 @@ export function Footer() {
               ))}
             </ul>
           </nav>
-
-          {/* Legal Links */}
-          <nav aria-label="Legal navigation">
-            <h4 className="font-bold mb-4 text-sm uppercase tracking-wider text-muted-foreground">
-              Legal
-            </h4>
-            <ul className="space-y-3 text-sm text-foreground/80">
-              {footerLinks.legal.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="hover:text-primary transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
         </div>
 
         {/* Bottom Bar */}
