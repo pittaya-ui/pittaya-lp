@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 
 import { siteConfig } from "@/config/site";
+import { LenisScrollProvider } from "@/components/lenis-scroll-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -97,7 +98,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased font-sans`}
       >
-        {children}
+        <LenisScrollProvider>{children}</LenisScrollProvider>
       </body>
     </html>
   );
