@@ -50,7 +50,7 @@ export function Navbar() {
             className="rounded-md"
             priority
           />
-          <span className="font-serif text-xl font-bold tracking-tight">
+          <span className="font-sans text-xl font-medium">
             {siteConfig.name}
           </span>
         </Link>

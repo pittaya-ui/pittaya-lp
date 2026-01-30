@@ -28,7 +28,7 @@ export function Footer() {
                 height={30}
                 className="rounded-sm"
               />
-              <span className="font-serif text-2xl font-bold">
+              <span className="font-sans text-2xl font-semibold">
                 {siteConfig.name}
               </span>
             </Link>
