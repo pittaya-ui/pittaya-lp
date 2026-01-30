@@ -100,7 +100,7 @@ export function HeroSection() {
             <Button
               variant="ghost"
               size="lg"
-              className="rounded-full hover:bg-secondary/80 hover:scale-105 active:scale-95 duration-300"
+              className="rounded-full hover:bg-secondary/80 hover:scale-105 active:scale-95 transition-all"
             >
               <Link href="#team">Who We Are</Link>
             </Button>
