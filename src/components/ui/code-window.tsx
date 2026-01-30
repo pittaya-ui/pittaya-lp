@@ -1,9 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useEffect, useState, lazy, Suspense, memo } from "react";
 import { cn } from "@/lib/utils";
+
+// Lazy load the heavy syntax highlighter
+const SyntaxHighlighter = lazy(() =>
+  import("react-syntax-highlighter").then((mod) => ({
+    default: mod.Prism,
+  })),
+);
+
+// Lazy load the theme
+const getTheme = () =>
+  import("react-syntax-highlighter/dist/esm/styles/prism").then(
+    (mod) => mod.atomDark,
+  );
 
 interface CodeWindowProps {
   codeString: string;
@@ -11,17 +22,27 @@ interface CodeWindowProps {
   className?: string;
 }
 
-export function CodeWindow({
+/**
+ * Code window component with typing animation
+ * Optimized with lazy loading for syntax highlighter
+ */
+function CodeWindowComponent({
   codeString,
   language = "typescript",
   className,
 }: CodeWindowProps) {
   const [displayedCode, setDisplayedCode] = useState("");
   const [isTyping, setIsTyping] = useState(true);
+  const [theme, setTheme] = useState<Record<string, React.CSSProperties>>({});
 
+  // Load theme on mount
+  useEffect(() => {
+    getTheme().then(setTheme);
+  }, []);
+
+  // Typing animation effect
   useEffect(() => {
     let index = 0;
-    // Delay start slightly to allow GSAP entrance to finish or start
     const startDelay = setTimeout(() => {
       const timer = setInterval(() => {
         setDisplayedCode(codeString.slice(0, index));
@@ -30,16 +51,13 @@ export function CodeWindow({
           clearInterval(timer);
           setIsTyping(false);
         }
-      }, 50); // Typing speed in ms
+      }, 50);
 
       return () => clearInterval(timer);
     }, 1000);
 
     return () => clearTimeout(startDelay);
   }, [codeString]);
-
-  // Handle cursor blinking by appending it to the code or just rendering close by
-  // Note: SyntaxHighlighter might treat "|" as an operator, which is fine, or we can just omit it inside the highlighter to avoid token issues.
 
   return (
     <div
@@ -50,7 +68,10 @@ export function CodeWindow({
       )}
     >
       {/* Window Header */}
-      <div className="flex items-center gap-2 px-4 py-3 bg-[#2d2d2d] border-b border-white/5 select-none">
+      <div
+        className="flex items-center gap-2 px-4 py-3 bg-[#2d2d2d] border-b border-white/5 select-none"
+        aria-hidden="true"
+      >
         <div className="w-3 h-3 rounded-full bg-[#ff5f56] hover:bg-[#ff5f56]/80 transition-colors" />
         <div className="w-3 h-3 rounded-full bg-[#ffbd2e] hover:bg-[#ffbd2e]/80 transition-colors" />
         <div className="w-3 h-3 rounded-full bg-[#27c93f] hover:bg-[#27c93f]/80 transition-colors" />
@@ -58,34 +79,40 @@ export function CodeWindow({
       </div>
 
       {/* Code Content */}
-      <div className="relative group">
-        <SyntaxHighlighter
-          language={language}
-          style={atomDark}
-          customStyle={{
-            margin: 0,
-            padding: "1.5rem",
-            fontSize: "0.9rem",
-            lineHeight: "1.6",
-            background: "transparent",
-            minHeight: "200px", // Prevent layout shift
-          }}
-          wrapLongLines={true}
+      <div className="relative group min-h-[200px]">
+        <Suspense
+          fallback={
+            <div className="p-6 text-white/50 animate-pulse">Loading...</div>
+          }
         >
-          {displayedCode}
-        </SyntaxHighlighter>
+          <SyntaxHighlighter
+            language={language}
+            style={theme}
+            customStyle={{
+              margin: 0,
+              padding: "1.5rem",
+              fontSize: "0.9rem",
+              lineHeight: "1.6",
+              background: "transparent",
+              minHeight: "200px",
+            }}
+            wrapLongLines
+          >
+            {displayedCode}
+          </SyntaxHighlighter>
+        </Suspense>
 
-        {/* Blinking Cursor overlay */}
+        {/* Blinking cursor indicator */}
         {isTyping && (
-          <div className="absolute inset-0 pointer-events-none">
-            {/* This is a bit tricky to position exactly at the end of text without monospace calc. 
-                 Simple CSS hack for cursor: 
-                 We won't try to position a cursor exactly at the text end because multiline wrapping makes it hard.
-                 Instead, we rely on the visual effect of text appearing.
-             */}
-          </div>
+          <span
+            className="absolute bottom-6 right-6 w-2 h-4 bg-white/70 animate-pulse"
+            aria-hidden="true"
+          />
         )}
       </div>
     </div>
   );
 }
+
+// Memoize to prevent unnecessary re-renders
+export const CodeWindow = memo(CodeWindowComponent);
