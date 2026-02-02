@@ -11,7 +11,7 @@ import { Footer } from "@/components/landing/footer";
  */
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans overflow-x-hidden selection:bg-pittaya selection:text-white">
+    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-pittaya selection:text-white">
       <Navbar />
       <main>
         <HeroSection />

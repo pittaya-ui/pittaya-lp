@@ -12,7 +12,7 @@ export const products = [
       container: "bg-primary/10 border-primary/20",
       icon: "text-primary",
     },
-    description: `A completely open-source UI library built for React. Powered by **Tailwind CSS**, **Radix primitives**, and **TypeScript**. It is the foundation of beauty in web development.`,
+    description: `A completely open-source UI library built for React. Powered by Tailwind CSS, Radix primitives, and TypeScript. It is the foundation of beauty in web development.`,
     tags: ["React", "Tailwind", "Radix", "Open Source"],
     cta: {
       label: "Start Building",
@@ -26,7 +26,7 @@ export const products = [
         height: 500,
       },
       mobile: {
-        src: "/UI-MIOBILE.png",
+        src: "/UI-MOBILE.png",
         alt: "Pittaya UI Mobile",
         width: 300,
         height: 600,
