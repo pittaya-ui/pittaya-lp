@@ -139,22 +139,48 @@ export function ProductsSection() {
                     </div>
                   )}
 
-                  <div className="pt-4">
-                    <Button
-                      asChild
-                      size="lg"
-                      className={cn(
-                        "rounded-full gap-2 text-base px-8 h-12 shadow-lg shadow-primary/10 hover:shadow-primary/20",
-                        "className" in product.cta
-                          ? product.cta.className
-                          : undefined,
-                      )}
-                    >
-                      <Link href={product.cta.href} target="_blank">
-                        {product.cta.label}
-                        <ArrowRight className="w-4 h-4 ml-1" />
-                      </Link>
-                    </Button>
+                  <div className="pt-4 flex flex-wrap gap-3">
+                    {Array.isArray(product.cta) ? (
+                      product.cta.map((ctaItem, ctaIndex) => (
+                        <Button
+                          key={ctaIndex}
+                          asChild
+                          size="lg"
+                          className={cn(
+                            "rounded-full gap-2 text-base px-8 h-12 shadow-lg shadow-primary/10 hover:shadow-primary/20",
+                            "className" in ctaItem
+                              ? ctaItem.className
+                              : undefined,
+                          )}
+                        >
+                          <Link href={ctaItem.href} target="_blank">
+                            {ctaItem.label}
+                            <ArrowRight className="w-4 h-4 ml-1" />
+                          </Link>
+                        </Button>
+                      ))
+                    ) : (
+                      <Button
+                        asChild
+                        size="lg"
+                        className={cn(
+                          "rounded-full gap-2 text-base px-8 h-12 shadow-lg shadow-primary/10 hover:shadow-primary/20",
+                          "className" in product.cta
+                            ? product.cta.className
+                            : undefined,
+                        )}
+                      >
+                        <Link
+                          href={"href" in product.cta ? product.cta.href : "#"}
+                          target="_blank"
+                        >
+                          {"label" in product.cta
+                            ? product.cta.label
+                            : "Learn More"}
+                          <ArrowRight className="w-4 h-4 ml-1" />
+                        </Link>
+                      </Button>
+                    )}
                   </div>
 
                   {/* Mobile Image Render (Visible only on mobile) */}
@@ -225,8 +251,21 @@ export function ProductsSection() {
 
                     {/* Mobile Mockup (if exists) */}
                     {"mobile" in product.images && product.images.mobile && (
-                      <div className="absolute -bottom-10 -right-8 w-1/3 shadow-2xl rounded-xl border border-border/20 bg-white z-20 transition-transform duration-700 delay-100 hover:-translate-y-4">
-                        <div className="rounded-xl overflow-hidden">
+                      <div
+                        className={cn(
+                          "absolute -bottom-10 -right-8 w-1/3 z-20 transition-transform duration-700 delay-100 hover:-translate-y-4",
+                          product.id === "pittaya-theme"
+                            ? "shadow-none"
+                            : "shadow-2xl rounded-xl border border-border/20 bg-white",
+                        )}
+                      >
+                        <div
+                          className={cn(
+                            product.id === "pittaya-theme"
+                              ? ""
+                              : "rounded-xl overflow-hidden",
+                          )}
+                        >
                           <Image
                             src={product.images.mobile.src}
                             alt={product.images.mobile.alt}
