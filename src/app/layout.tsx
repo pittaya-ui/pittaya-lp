@@ -96,7 +96,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased font-sans`}
+        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased font-sans overflow-x-hidden`}
       >
         <LenisScrollProvider>{children}</LenisScrollProvider>
       </body>

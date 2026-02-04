@@ -24,5 +24,10 @@ export const footerLinks = {
   products: [
     { href: "https://ui.pittaya.org", label: "Pittaya UI", external: true },
     { href: "https://amion.app", label: "AM I ON?", external: true },
+    {
+      href: "https://marketplace.visualstudio.com/items?itemName=pittaya-org.pittaya-theme",
+      label: "Pittaya Theme",
+      external: true,
+    },
   ],
 } as const;

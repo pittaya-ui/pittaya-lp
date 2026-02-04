@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, lazy, Suspense, memo } from "react";
+import { useEffect, useState, lazy, Suspense, memo, useCallback } from "react";
 import { cn } from "@/lib/utils";
 
 // Lazy load the heavy syntax highlighter
@@ -20,6 +20,10 @@ interface CodeWindowProps {
   codeString: string;
   language?: string;
   className?: string;
+}
+
+interface CustomCodeTagProps extends React.HTMLAttributes<HTMLElement> {
+  children?: React.ReactNode;
 }
 
 /**
@@ -51,13 +55,25 @@ function CodeWindowComponent({
           clearInterval(timer);
           setIsTyping(false);
         }
-      }, 50);
+      }, 20);
 
       return () => clearInterval(timer);
     }, 1000);
 
     return () => clearTimeout(startDelay);
   }, [codeString]);
+
+  const CustomCodeTag = useCallback(
+    ({ children, ...props }: CustomCodeTagProps) => (
+      <code {...props}>
+        {children}
+        {isTyping && (
+          <span className="inline-block w-2.5 h-5 ml-1 align-text-bottom bg-white/70 animate-pulse" />
+        )}
+      </code>
+    ),
+    [isTyping],
+  );
 
   return (
     <div
@@ -97,18 +113,11 @@ function CodeWindowComponent({
               minHeight: "200px",
             }}
             wrapLongLines
+            CodeTag={CustomCodeTag}
           >
             {displayedCode}
           </SyntaxHighlighter>
         </Suspense>
-
-        {/* Blinking cursor indicator */}
-        {isTyping && (
-          <span
-            className="absolute bottom-6 right-6 w-2 h-4 bg-white/70 animate-pulse"
-            aria-hidden="true"
-          />
-        )}
       </div>
     </div>
   );
