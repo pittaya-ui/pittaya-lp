@@ -1,14 +1,18 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Github, Twitter } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { teamMembers } from "@/data/team";
 
 /**
- * Team section - Server Component (no client-side JS needed)
- * Optimized by removing "use client" and unused GSAP imports
+ * Team section component
  */
 export function TeamSection() {
+  const t = useTranslations("team");
+
   return (
     <section
       id="team"
@@ -23,14 +27,12 @@ export function TeamSection() {
               id="team-heading"
               className="text-3xl font-bold sm:text-4xl text-left"
             >
-              Who is Behind the business?
+              {t("title")}
             </h2>
           </div>
           <div className="mt-6 sm:mt-0">
             <p className="text-justify text-muted-foreground">
-              During the working process, we perform regular fitting with the
-              client because he is the only person who can feel whether a new
-              suit fits or not.
+              {t("description")}
             </p>
           </div>
         </header>
@@ -42,7 +44,7 @@ export function TeamSection() {
               <Image
                 className="h-96 w-full rounded-md object-cover object-top grayscale transition-all duration-500 hover:grayscale-0 group-hover:h-[22.5rem] group-hover:rounded-xl"
                 src={member.src}
-                alt={`${member.name} - ${member.role}`}
+                alt={`${member.name} - ${t(`members.${member.roleKey}.role`)}`}
                 width={826}
                 height={1239}
                 loading="lazy"
@@ -58,7 +60,7 @@ export function TeamSection() {
                 </div>
                 <div className="mt-1 flex items-center justify-between">
                   <span className="text-muted-foreground inline-block translate-y-6 text-sm opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 text-left">
-                    {member.role}
+                    {t(`members.${member.roleKey}.role`)}
                   </span>
                   <div className="flex gap-3 translate-y-8 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 delay-75">
                     <Link

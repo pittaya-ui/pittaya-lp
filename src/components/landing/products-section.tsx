@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -15,9 +16,22 @@ import { products } from "@/data/products";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Mapping from product IDs to translation keys
+const productTranslationKeys: Record<string, string> = {
+  "pittaya-ui": "pittayaUI",
+  "am-i-on": "amIOn",
+  "pittaya-theme": "pittayaTheme",
+};
+
 export function ProductsSection() {
+  const t = useTranslations("products");
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeProductIndex, setActiveProductIndex] = useState(0);
+
+  const getProductTranslation = (productId: string, key: string) => {
+    const translationKey = productTranslationKeys[productId];
+    return t(`${translationKey}.${key}`);
+  };
 
   useGSAP(
     () => {
@@ -70,18 +84,18 @@ export function ProductsSection() {
               variant="outline"
               className="mb-6 py-1.5 px-4 border-primary/20 bg-primary/5 text-primary text-sm font-medium tracking-wide uppercase"
             >
-              Our Ecosystem
+              {t("badge")}
             </Badge>
           </div>
           <h2
             id="products-heading"
             className="header-element font-serif text-5xl md:text-6xl font-bold mb-6 text-foreground"
           >
-            Tools for the <span className="italic text-primary">Bold</span>
+            {t("title")}{" "}
+            <span className="italic text-primary">{t("titleAccent")}</span>
           </h2>
           <p className="header-element text-muted-foreground/80 text-xl leading-relaxed">
-            Discover our suite of products designed to empower developers and
-            businesses with modern solutions.
+            {t("description")}
           </p>
         </header>
 
@@ -116,13 +130,13 @@ export function ProductsSection() {
                   {"quote" in product && product.quote && (
                     <blockquote className="border-l-4 border-primary/30 pl-4 py-1">
                       <p className="text-lg italic text-muted-foreground font-serif">
-                        &quot;{product.quote}&quot;
+                        &quot;{getProductTranslation(product.id, "quote")}&quot;
                       </p>
                     </blockquote>
                   )}
 
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    {product.description}
+                    {getProductTranslation(product.id, "description")}
                   </p>
 
                   {"tags" in product && product.tags && (
@@ -154,7 +168,9 @@ export function ProductsSection() {
                           )}
                         >
                           <Link href={ctaItem.href} target="_blank">
-                            {ctaItem.label}
+                            {ctaIndex === 0
+                              ? getProductTranslation(product.id, "ctaInstall")
+                              : getProductTranslation(product.id, "ctaGitHub")}
                             <ArrowRight className="w-4 h-4 ml-1" />
                           </Link>
                         </Button>
@@ -174,9 +190,7 @@ export function ProductsSection() {
                           href={"href" in product.cta ? product.cta.href : "#"}
                           target="_blank"
                         >
-                          {"label" in product.cta
-                            ? product.cta.label
-                            : "Learn More"}
+                          {getProductTranslation(product.id, "cta")}
                           <ArrowRight className="w-4 h-4 ml-1" />
                         </Link>
                       </Button>

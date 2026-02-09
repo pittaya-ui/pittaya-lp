@@ -4,8 +4,8 @@
 export const teamMembers = [
   {
     name: "Lucas Ribeiro",
-    role: "Co-Founder & Most Beautiful Developer",
-    src: "/lucas.jpeg",
+    roleKey: "lucas",
+    src: "/team/lucas.jpeg",
     socials: {
       twitter: "https://x.com/lucasribeirodev",
       github: "https://github.com/lucasadsr",
@@ -13,8 +13,8 @@ export const teamMembers = [
   },
   {
     name: "Marcos Bueno",
-    role: "Co-Founder & The best from Olinda",
-    src: "/marcos.jpeg",
+    roleKey: "marcos",
+    src: "/team/marcos.jpeg",
     socials: {
       twitter: "https://x.com/MarcosBuenoDev",
       github: "https://github.com/marcosvbueno",
@@ -22,8 +22,8 @@ export const teamMembers = [
   },
   {
     name: "Jarbas Gouveia",
-    role: "Co-Founder & The best from Ibura",
-    src: "/jarbas.jpeg",
+    roleKey: "jarbas",
+    src: "/team/jarbas.jpeg",
     socials: {
       twitter: "https://x.com/jarbas_gouveia",
       github: "https://github.com/jjgouveia",

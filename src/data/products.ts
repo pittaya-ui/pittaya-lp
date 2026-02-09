@@ -21,13 +21,13 @@ export const products = [
     },
     images: {
       desktop: {
-        src: "/UI.png",
+        src: "/products/ui/UI.png",
         alt: "Pittaya UI Desktop",
         width: 800,
         height: 500,
       },
       mobile: {
-        src: "/UI-MOBILE.png",
+        src: "/products/ui/UI-MOBILE.png",
         alt: "Pittaya UI Mobile",
         width: 300,
         height: 600,
@@ -53,7 +53,7 @@ export const products = [
     },
     images: {
       desktop: {
-        src: "/AMION.png",
+        src: "/products/amion/AMION.png",
         alt: "AM I ON? Dashboard",
         width: 800,
         height: 500,
@@ -94,13 +94,13 @@ export const products = [
     ],
     images: {
       desktop: {
-        src: "/pittaya-theme-screenshot.png",
+        src: "/products/theme/pittaya-theme-screenshot.png",
         alt: "Pittaya Theme Preview",
         width: 800,
         height: 500,
       },
       mobile: {
-        src: "/PITTAINHO.png",
+        src: "/products/theme/PITTAINHO.png",
         alt: "Pittaya Theme Icon",
         width: 512,
         height: 512,

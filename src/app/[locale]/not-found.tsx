@@ -1,12 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/landing/navbar";
 import { Footer } from "@/components/landing/footer";
 
 export default function NotFound() {
+  const t = useTranslations("notFound");
+
   return (
     <div className="mt-20 min-h-screen bg-background text-foreground font-sans selection:bg-pittaya selection:text-white flex flex-col">
       <Navbar />
@@ -39,19 +44,18 @@ export default function NotFound() {
           </div>
 
           <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold tracking-tight">
-            Page Not Found
+            {t("title")}
           </h2>
 
           <p className="text-lg xl:text-xl text-muted-foreground leading-relaxed">
-            Oops! It seems you&apos;ve wandered into uncharted territory. The
-            page you are looking for doesn&apos;t exist or has been moved.
+            {t("description")}
           </p>
 
           <div className="pt-4">
             <Button asChild size="lg" className="rounded-full gap-2 px-8">
               <Link href="/">
                 <ArrowLeft className="w-4 h-4" />
-                Back to Home
+                {t("backToHome")}
               </Link>
             </Button>
           </div>
