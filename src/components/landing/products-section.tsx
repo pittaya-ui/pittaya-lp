@@ -16,10 +16,22 @@ import { products } from "@/data/products";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Mapping from product IDs to translation keys
+const productTranslationKeys: Record<string, string> = {
+  "pittaya-ui": "pittayaUI",
+  "am-i-on": "amIOn",
+  "pittaya-theme": "pittayaTheme",
+};
+
 export function ProductsSection() {
   const t = useTranslations("products");
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeProductIndex, setActiveProductIndex] = useState(0);
+
+  const getProductTranslation = (productId: string, key: string) => {
+    const translationKey = productTranslationKeys[productId];
+    return t(`${translationKey}.${key}`);
+  };
 
   useGSAP(
     () => {
@@ -118,13 +130,13 @@ export function ProductsSection() {
                   {"quote" in product && product.quote && (
                     <blockquote className="border-l-4 border-primary/30 pl-4 py-1">
                       <p className="text-lg italic text-muted-foreground font-serif">
-                        &quot;{product.quote}&quot;
+                        &quot;{getProductTranslation(product.id, "quote")}&quot;
                       </p>
                     </blockquote>
                   )}
 
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    {product.description}
+                    {getProductTranslation(product.id, "description")}
                   </p>
 
                   {"tags" in product && product.tags && (
@@ -156,7 +168,9 @@ export function ProductsSection() {
                           )}
                         >
                           <Link href={ctaItem.href} target="_blank">
-                            {ctaItem.label}
+                            {ctaIndex === 0
+                              ? getProductTranslation(product.id, "ctaInstall")
+                              : getProductTranslation(product.id, "ctaGitHub")}
                             <ArrowRight className="w-4 h-4 ml-1" />
                           </Link>
                         </Button>
@@ -176,9 +190,7 @@ export function ProductsSection() {
                           href={"href" in product.cta ? product.cta.href : "#"}
                           target="_blank"
                         >
-                          {"label" in product.cta
-                            ? product.cta.label
-                            : "Learn More"}
+                          {getProductTranslation(product.id, "cta")}
                           <ArrowRight className="w-4 h-4 ml-1" />
                         </Link>
                       </Button>
