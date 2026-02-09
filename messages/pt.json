@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "title": "Pittaya - O Futuro das Experiências Digitais",
+    "titleTemplate": "{title} | Pittaya",
+    "description": "Ferramentas brutais para problemas brutais. Criando ferramentas que capacitam a próxima geração de criadores digitais."
+  },
+  "navbar": {
+    "products": "Produtos",
+    "testimonials": "Depoimentos",
+    "team": "Equipe",
+    "getInTouch": "Entre em Contato"
+  },
+  "hero": {
+    "announcement": "Novo: AM I ON? está no ar!",
+    "headlineMain": "Refinando a",
+    "headlineAccent": "Excelência Digital",
+    "description": "Construímos ferramentas que unem funcionalidade e elegância. Experimente a próxima geração de desenvolvimento com Pittaya.",
+    "ctaPrimary": "Explorar Produtos",
+    "ctaSecondary": "Quem Somos"
+  },
+  "products": {
+    "badge": "Nosso Ecossistema",
+    "title": "Ferramentas para os",
+    "titleAccent": "Ousados",
+    "description": "Descubra nosso conjunto de produtos projetados para capacitar desenvolvedores e empresas com soluções modernas.",
+    "pittayaUI": {
+      "title": "Pittaya UI",
+      "description": "Uma biblioteca de UI completamente open-source construída para React. Alimentada por Tailwind CSS, primitivas Radix e TypeScript. É a base da beleza no desenvolvimento web.",
+      "cta": "Começar a Construir"
+    },
+    "amIOn": {
+      "title": "AM I ON?",
+      "quote": "Elimine o downtime da face da terra.",
+      "description": "Monitoramento extremo para desenvolvedores que se recusam a aceitar falhas. Ferramentas brutais para problemas brutais. Sem e-mails fofos, apenas alertas que te forçam a agir.",
+      "cta": "Começar Monitoramento"
+    },
+    "pittayaTheme": {
+      "title": "Pittaya Theme",
+      "description": "Um tema minimalista para VSCode, Cursor, Windsurf e outras IDEs baseadas em VSCode. Criado pela equipe Pittaya, com modos dark e light elegantes. Open-source e pronto para contribuições. Com mais de 400 downloads em todos os marketplaces e suporte para as tecnologias mais populares incluindo Go, Python, React, TypeScript, JavaScript, HTML e CSS.",
+      "ctaInstall": "Instalar Tema",
+      "ctaGitHub": "Ver no GitHub"
+    }
+  },
+  "testimonials": {
+    "title": "O Que Dizem",
+    "subtitle": "Confiado por desenvolvedores no mundo todo.",
+    "items": {
+      "alexChen": {
+        "name": "Alex Chen",
+        "role": "Líder de Frontend",
+        "text": "Pittaya UI nos economizou semanas de tempo de desenvolvimento. Os componentes não são apenas funcionais, eles são impressionantes."
+      },
+      "sarahMiller": {
+        "name": "Sarah Miller",
+        "role": "Engenheira DevOps",
+        "text": "AM I ON? é a única ferramenta de monitoramento que me acorda quando realmente importa. Sem falsos positivos. Pura eficiência."
+      },
+      "davidK": {
+        "name": "David K.",
+        "role": "CTO na TechFlow",
+        "text": "A atenção aos detalhes em cada produto Pittaya é incomparável. Parece premium, parece robusto."
+      }
+    }
+  },
+  "team": {
+    "title": "Quem Está Por Trás do Negócio?",
+    "description": "Durante o processo de trabalho, realizamos ajustes regulares com o cliente porque ele é a única pessoa que pode sentir se um novo terno serve ou não.",
+    "members": {
+      "lucas": {
+        "role": "Co-Fundador & Desenvolvedor Mais Bonito"
+      },
+      "marcos": {
+        "role": "Co-Fundador & O Melhor de Olinda"
+      },
+      "jarbas": {
+        "role": "Co-Fundador & O Melhor do Ibura"
+      }
+    }
+  },
+  "footer": {
+    "description": "Ferramentas brutais para problemas brutais. Criando ferramentas que capacitam a próxima geração de criadores digitais.",
+    "productsHeading": "Produtos",
+    "allRightsReserved": "Todos os direitos reservados.",
+    "madeWith": "Feito com",
+    "inBrazil": "no Brasil"
+  },
+  "notFound": {
+    "title": "Página Não Encontrada",
+    "description": "Ops! Parece que você se aventurou em território desconhecido. A página que você está procurando não existe ou foi movida.",
+    "backToHome": "Voltar ao Início"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "title": "Pittaya - El Futuro de las Experiencias Digitales",
+    "titleTemplate": "{title} | Pittaya",
+    "description": "Herramientas brutales para problemas brutales. Creando herramientas que empoderan a la próxima generación de creadores digitales."
+  },
+  "navbar": {
+    "products": "Productos",
+    "testimonials": "Testimonios",
+    "team": "Equipo",
+    "getInTouch": "Contáctanos"
+  },
+  "hero": {
+    "announcement": "Nuevo: ¡AM I ON? ya está en vivo!",
+    "headlineMain": "Refinando la",
+    "headlineAccent": "Excelencia Digital",
+    "description": "Construimos herramientas que unen funcionalidad y lujo. Experimenta la próxima generación de desarrollo con Pittaya.",
+    "ctaPrimary": "Explorar Productos",
+    "ctaSecondary": "Quiénes Somos"
+  },
+  "products": {
+    "badge": "Nuestro Ecosistema",
+    "title": "Herramientas para los",
+    "titleAccent": "Audaces",
+    "description": "Descubre nuestra suite de productos diseñados para empoderar a desarrolladores y empresas con soluciones modernas.",
+    "pittayaUI": {
+      "title": "Pittaya UI",
+      "description": "Una biblioteca de UI completamente open-source construida para React. Impulsada por Tailwind CSS, primitivas Radix y TypeScript. Es la base de la belleza en el desarrollo web.",
+      "cta": "Empezar a Construir"
+    },
+    "amIOn": {
+      "title": "AM I ON?",
+      "quote": "Elimina el tiempo de inactividad de la faz de la tierra.",
+      "description": "Monitoreo extremo para desarrolladores que se niegan a aceptar el fracaso. Herramientas brutales para problemas brutales. Sin correos lindos, solo alertas que te obligan a actuar.",
+      "cta": "Empezar Monitoreo"
+    },
+    "pittayaTheme": {
+      "title": "Pittaya Theme",
+      "description": "Un tema minimalista para VSCode, Cursor, Windsurf y otras IDEs basadas en VSCode. Creado por el equipo Pittaya, con elegantes modos oscuro y claro. Open-source y listo para contribuciones. Con más de 400 descargas en todos los marketplaces y soporte para las tecnologías más populares incluyendo Go, Python, React, TypeScript, JavaScript, HTML y CSS.",
+      "ctaInstall": "Instalar Tema",
+      "ctaGitHub": "Ver en GitHub"
+    }
+  },
+  "testimonials": {
+    "title": "Lo Que Dicen",
+    "subtitle": "Confiado por desarrolladores en todo el mundo.",
+    "items": {
+      "alexChen": {
+        "name": "Alex Chen",
+        "role": "Líder de Frontend",
+        "text": "Pittaya UI nos ahorró semanas de tiempo de desarrollo. Los componentes no solo son funcionales, son impresionantes."
+      },
+      "sarahMiller": {
+        "name": "Sarah Miller",
+        "role": "Ingeniera DevOps",
+        "text": "AM I ON? es la única herramienta de monitoreo que me despierta cuando realmente importa. Sin falsos positivos. Pura eficiencia."
+      },
+      "davidK": {
+        "name": "David K.",
+        "role": "CTO en TechFlow",
+        "text": "La atención al detalle en cada producto de Pittaya es inigualable. Se siente premium, se siente robusto."
+      }
+    }
+  },
+  "team": {
+    "title": "¿Quién Está Detrás del Negocio?",
+    "description": "Durante el proceso de trabajo, realizamos ajustes regulares con el cliente porque él es la única persona que puede sentir si un nuevo traje le queda bien o no.",
+    "members": {
+      "lucas": {
+        "role": "Co-Fundador & Desarrollador Más Guapo"
+      },
+      "marcos": {
+        "role": "Co-Fundador & El Mejor de Olinda"
+      },
+      "jarbas": {
+        "role": "Co-Fundador & El Mejor de Ibura"
+      }
+    }
+  },
+  "footer": {
+    "description": "Herramientas brutales para problemas brutales. Creando herramientas que empoderan a la próxima generación de creadores digitales.",
+    "productsHeading": "Productos",
+    "allRightsReserved": "Todos los derechos reservados.",
+    "madeWith": "Hecho con",
+    "inBrazil": "en Brasil"
+  },
+  "notFound": {
+    "title": "Página No Encontrada",
+    "description": "¡Ups! Parece que te has aventurado en territorio desconocido. La página que buscas no existe o ha sido movida.",
+    "backToHome": "Volver al Inicio"
+  }
+}

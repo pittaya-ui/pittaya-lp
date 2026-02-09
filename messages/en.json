@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "title": "Pittaya - Future of Digital Experiences",
+    "titleTemplate": "{title} | Pittaya",
+    "description": "Brutal tools for brutal problems. Creating tools that empower the next generation of digital creators."
+  },
+  "navbar": {
+    "products": "Products",
+    "testimonials": "Testimonials",
+    "team": "Team",
+    "getInTouch": "Get in Touch"
+  },
+  "hero": {
+    "announcement": "New: AM I ON? is now live!",
+    "headlineMain": "Refining Digital",
+    "headlineAccent": "Excellence",
+    "description": "We build tools that bridge functionality and luxury. Experience the next generation of development with Pittaya.",
+    "ctaPrimary": "Explore Products",
+    "ctaSecondary": "Who We Are"
+  },
+  "products": {
+    "badge": "Our Ecosystem",
+    "title": "Tools for the",
+    "titleAccent": "Bold",
+    "description": "Discover our suite of products designed to empower developers and businesses with modern solutions.",
+    "pittayaUI": {
+      "title": "Pittaya UI",
+      "description": "A completely open-source UI library built for React. Powered by Tailwind CSS, Radix primitives, and TypeScript. It is the foundation of beauty in web development.",
+      "cta": "Start Building"
+    },
+    "amIOn": {
+      "title": "AM I ON?",
+      "quote": "Purge downtime from the face of the earth.",
+      "description": "Extreme monitoring for developers who refuse to accept failure. Brutal tools for brutal problems. No cute emails, just alerts that force you to act.",
+      "cta": "Start Monitoring"
+    },
+    "pittayaTheme": {
+      "title": "Pittaya Theme",
+      "description": "A minimalist theme for VSCode, Cursor, Windsurf, and other VSCode-based IDEs. Built by the Pittaya team, featuring elegant dark and light modes. Open-source and ready for contributions. With 400+ downloads across all marketplaces and support for the most popular technologies including Go, Python, React, TypeScript, JavaScript, HTML, and CSS.",
+      "ctaInstall": "Install Theme",
+      "ctaGitHub": "View on GitHub"
+    }
+  },
+  "testimonials": {
+    "title": "What They Say",
+    "subtitle": "Trusted by developers worldwide.",
+    "items": {
+      "alexChen": {
+        "name": "Alex Chen",
+        "role": "Frontend Lead",
+        "text": "Pittaya UI saved us weeks of development time. The components are not just functional, they are stunning."
+      },
+      "sarahMiller": {
+        "name": "Sarah Miller",
+        "role": "DevOps Engineer",
+        "text": "AM I ON? is the only monitoring tool that wakes me up when it actually matters. No false positives. Pure efficiency."
+      },
+      "davidK": {
+        "name": "David K.",
+        "role": "CTO at TechFlow",
+        "text": "The attention to detail in every Pittaya product is unmatched. It feels premium, it feels robust."
+      }
+    }
+  },
+  "team": {
+    "title": "Who is Behind the business?",
+    "description": "During the working process, we perform regular fitting with the client because he is the only person who can feel whether a new suit fits or not.",
+    "members": {
+      "lucas": {
+        "role": "Co-Founder & Most Beautiful Developer"
+      },
+      "marcos": {
+        "role": "Co-Founder & The best from Olinda"
+      },
+      "jarbas": {
+        "role": "Co-Founder & The best from Ibura"
+      }
+    }
+  },
+  "footer": {
+    "description": "Brutal tools for brutal problems. Creating tools that empower the next generation of digital creators.",
+    "productsHeading": "Products",
+    "allRightsReserved": "All rights reserved.",
+    "madeWith": "Made with",
+    "inBrazil": "in Brazil"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Oops! It seems you've wandered into uncharted territory. The page you are looking for doesn't exist or has been moved.",
+    "backToHome": "Back to Home"
+  }
+}

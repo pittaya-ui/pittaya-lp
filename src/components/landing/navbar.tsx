@@ -2,19 +2,37 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
 
 import { Button } from "@/components/ui/button";
-import { siteConfig, navLinks } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { locales, localeNames, localeFlags, Locale } from "@/i18n/config";
 
 /**
  * Navigation bar component
  */
 export function Navbar() {
+  const t = useTranslations("navbar");
+  const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+
+  const navLinks = [
+    { href: "#products", label: t("products") },
+    { href: "#testimonials", label: t("testimonials") },
+    { href: "#team", label: t("team") },
+  ];
+
+  const handleLocaleChange = (newLocale: Locale) => {
+    router.replace(pathname, { locale: newLocale });
+    setIsLangMenuOpen(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,15 +93,54 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* CTA Button and Mobile Toggle */}
-        <div className="flex items-center gap-4">
+        {/* CTA Button, Language Selector and Mobile Toggle */}
+        <div className="flex items-center gap-2">
+          {/* Language Selector */}
+          <div className="relative">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-1.5 px-2"
+              onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+              aria-label="Select language"
+            >
+              <Globe className="w-4 h-4" />
+              <span className="hidden sm:inline text-xs">
+                {localeFlags[locale as Locale]}
+              </span>
+            </Button>
+            {isLangMenuOpen && (
+              <>
+                <div
+                  className="fixed inset-0 z-40"
+                  onClick={() => setIsLangMenuOpen(false)}
+                />
+                <div className="absolute right-0 top-full mt-2 bg-background border border-border rounded-lg shadow-lg py-1 z-50 min-w-[140px]">
+                  {locales.map((loc) => (
+                    <button
+                      key={loc}
+                      onClick={() => handleLocaleChange(loc)}
+                      className={cn(
+                        "w-full px-3 py-2 text-sm text-left hover:bg-secondary/50 transition-colors flex items-center gap-2",
+                        locale === loc && "bg-secondary/30 font-medium",
+                      )}
+                    >
+                      <span>{localeFlags[loc]}</span>
+                      <span>{localeNames[loc]}</span>
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+
           <Button
             variant="outline"
             size="sm"
             className="hidden sm:flex"
             asChild
           >
-            <Link href="mailto:team@pittaya.org">Get in Touch</Link>
+            <a href="mailto:team@pittaya.org">{t("getInTouch")}</a>
           </Button>
 
           <button
@@ -132,14 +189,34 @@ export function Navbar() {
             {link.label}
           </Link>
         ))}
-        <div className="mt-2 sm:hidden">
+        <div className="mt-2 sm:hidden flex flex-col items-center gap-2">
+          {/* Mobile Language Selector */}
+          <div className="flex gap-2">
+            {locales.map((loc) => (
+              <button
+                key={loc}
+                onClick={() => {
+                  handleLocaleChange(loc);
+                  setIsMobileMenuOpen(false);
+                }}
+                className={cn(
+                  "px-3 py-1.5 text-sm rounded-full border transition-colors",
+                  locale === loc
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "border-border hover:bg-secondary/50",
+                )}
+              >
+                {localeFlags[loc]}
+              </button>
+            ))}
+          </div>
           <Button
             variant="outline"
             size="sm"
             asChild
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            <Link href="mailto:team@pittaya.org">Get in Touch</Link>
+            <a href="mailto:team@pittaya.org">{t("getInTouch")}</a>
           </Button>
         </div>
       </div>

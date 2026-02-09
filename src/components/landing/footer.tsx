@@ -1,14 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { siteConfig, footerLinks } from "@/config/site";
 
 /**
- * Footer component - Server Component (no client-side JS needed)
- * Optimized by removing "use client" directive
+ * Footer component
  */
 export function Footer() {
+  const t = useTranslations("footer");
   const currentYear = new Date().getFullYear();
 
   return (
@@ -32,15 +35,13 @@ export function Footer() {
                 {siteConfig.name}
               </span>
             </Link>
-            <p className="text-muted-foreground max-w-sm">
-              {siteConfig.description}
-            </p>
+            <p className="text-muted-foreground max-w-sm">{t("description")}</p>
           </div>
 
           {/* Products Links */}
           <nav aria-label="Products navigation">
             <h4 className="font-bold mb-4 text-sm uppercase tracking-wider text-muted-foreground">
-              Products
+              {t("productsHeading")}
             </h4>
             <ul className="space-y-3 text-sm text-foreground/80">
               {footerLinks.products.map((link) => (
@@ -64,16 +65,16 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border mt-12 text-sm text-muted-foreground">
           <p>
-            © {currentYear} {siteConfig.creator} All rights reserved.
+            © {currentYear} {siteConfig.creator} {t("allRightsReserved")}
           </p>
           <div className="flex items-center gap-4 mt-4 md:mt-0">
             <span>
-              Made with{" "}
+              {t("madeWith")}{" "}
               <Heart
                 className="w-3 h-3 inline text-red-500 mx-1 fill-current"
                 aria-label="love"
               />{" "}
-              in Brazil
+              {t("inBrazil")}
             </span>
           </div>
         </div>
