@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { CodeWindow } from "@/components/ui/code-window";
@@ -12,9 +13,10 @@ import {
   AnnouncementContainer,
   AnnouncementTitle,
 } from "@/components/ui/announcement-badge";
-import { heroContent, heroCode } from "@/data/hero";
+import { heroCode } from "@/data/hero";
 
 export function HeroSection() {
+  const t = useTranslations("hero");
   const containerRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -68,7 +70,7 @@ export function HeroSection() {
           <div className="hero-text-element">
             <AnnouncementContainer variant="default">
               <AnnouncementTitle>
-                {heroContent.announcement.text}
+                {t("announcement")}
                 <ArrowRight
                   className="ml-2 w-4 h-4 inline"
                   aria-hidden="true"
@@ -78,15 +80,12 @@ export function HeroSection() {
           </div>
 
           <h1 className="hero-text-element font-serif text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight text-foreground">
-            {heroContent.headline.main}{" "}
-            <span className="text-primary italic">
-              {heroContent.headline.accent}
-            </span>
-            .
+            {t("headlineMain")}{" "}
+            <span className="text-primary italic">{t("headlineAccent")}</span>.
           </h1>
 
           <p className="hero-text-element text-xl text-muted-foreground leading-relaxed max-w-lg">
-            {heroContent.description}
+            {t("description")}
           </p>
 
           <div className="hero-text-element flex flex-wrap gap-4 pt-4">
@@ -95,8 +94,8 @@ export function HeroSection() {
               className="rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95 duration-300"
               asChild
             >
-              <Link href={heroContent.cta.primary.href}>
-                {heroContent.cta.primary.label}
+              <Link href="#products">
+                {t("ctaPrimary")}
                 <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
               </Link>
             </Button>
@@ -106,9 +105,7 @@ export function HeroSection() {
               className="rounded-full hover:bg-secondary/80 hover:scale-105 active:scale-95 transition-all"
               asChild
             >
-              <Link href={heroContent.cta.secondary.href}>
-                {heroContent.cta.secondary.label}
-              </Link>
+              <Link href="#team">{t("ctaSecondary")}</Link>
             </Button>
           </div>
         </div>

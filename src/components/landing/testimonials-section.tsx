@@ -4,11 +4,11 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslations } from "next-intl";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Carousel } from "@/components/ui/carousel";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { testimonials } from "@/data/testimonials";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +16,23 @@ gsap.registerPlugin(ScrollTrigger);
  * Testimonials section with auto-playing carousel
  */
 export function TestimonialsSection() {
+  const t = useTranslations("testimonials");
   const containerRef = useRef<HTMLElement>(null);
+
+  const testimonials = [
+    {
+      key: "alexChen",
+      initials: "AC",
+    },
+    {
+      key: "sarahMiller",
+      initials: "SM",
+    },
+    {
+      key: "davidK",
+      initials: "DK",
+    },
+  ];
 
   useGSAP(
     () => {
@@ -60,11 +76,9 @@ export function TestimonialsSection() {
             id="testimonials-heading"
             className="font-serif text-4xl font-bold mb-4"
           >
-            What They Say
+            {t("title")}
           </h2>
-          <p className="text-muted-foreground">
-            Trusted by developers worldwide.
-          </p>
+          <p className="text-muted-foreground">{t("subtitle")}</p>
         </header>
 
         {/* Testimonials Carousel */}
@@ -86,16 +100,16 @@ export function TestimonialsSection() {
                   </Avatar>
                   <div className="flex flex-col">
                     <span className="font-sans font-bold text-sm">
-                      {testimonial.name}
+                      {t(`items.${testimonial.key}.name`)}
                     </span>
                     <span className="text-xs text-muted-foreground">
-                      {testimonial.role}
+                      {t(`items.${testimonial.key}.role`)}
                     </span>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-4">
                   <blockquote className="text-sm leading-relaxed italic text-muted-foreground">
-                    &quot;{testimonial.text}&quot;
+                    &quot;{t(`items.${testimonial.key}.text`)}&quot;
                   </blockquote>
                 </CardContent>
               </Card>
