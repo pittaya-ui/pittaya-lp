@@ -6,7 +6,6 @@ export const siteConfig = {
   description:
     "Brutal tools for brutal problems. Creating tools that empower the next generation of digital creators.",
   url: "https://pittaya.org",
-  ogImage: "/og-image.png",
   links: {
     twitter: "https://twitter.com/pittaya_ui",
     github: "https://github.com/pittaya-ui",
