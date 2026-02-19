@@ -75,7 +75,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: siteConfig.name,
       images: [
         {
-          url: siteConfig.ogImage,
+          url: `/${locale}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: siteConfig.name,
@@ -86,8 +86,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: siteConfig.name,
       description: messages.metadata.description,
-      images: [siteConfig.ogImage],
       creator: "Pittaya",
+      images: [`/${locale}/opengraph-image`],
     },
     robots: {
       index: true,
@@ -99,11 +99,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         "max-image-preview": "large",
         "max-snippet": -1,
       },
-    },
-    icons: {
-      icon: "/favicon.ico",
-      shortcut: "/favicon-16x16.png",
-      apple: "/apple-touch-icon.png",
     },
     alternates: {
       canonical: `${siteConfig.url}/${locale}`,
