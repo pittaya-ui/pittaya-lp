@@ -16,15 +16,6 @@ export default async function Image({
   const { locale } = await params;
   const messages = (await import(`../../../messages/${locale}.json`)).default;
 
-  // Load logo image as base64
-  const logoData = await fetch(
-    new URL("../../../public/PITTAYA-LOGO.PNG", import.meta.url),
-  ).then(async (res) => {
-    const arrayBuffer = await res.arrayBuffer();
-    const base64 = Buffer.from(arrayBuffer).toString("base64");
-    return `data:image/png;base64,${base64}`;
-  });
-
   return new ImageResponse(
     <div
       style={{
@@ -87,8 +78,6 @@ export default async function Image({
             gap: "20px",
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logoData} alt="Pittaya Logo" width="65" height="80" />
           <div
             style={{
               fontSize: "72px",
