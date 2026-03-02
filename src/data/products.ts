@@ -70,7 +70,7 @@ export const products = [
       icon: "text-purple-600",
     },
     description:
-      "A minimalist theme for VSCode, Cursor, Windsurf, and other VSCode-based IDEs. Built by the Pittaya team, featuring elegant dark and light modes. Open-source and ready for contributions. With 400+ downloads across all marketplaces and support for the most popular technologies including Go, Python, React, TypeScript, JavaScript, HTML, and CSS.",
+      "A minimalist theme for VSCode, Cursor, Windsurf, and other VSCode-based IDEs. Built by the Pittaya team, featuring elegant dark and light modes. Open-source and ready for contributions. With 1.1k+ downloads across all marketplaces and support for the most popular technologies including Go, Python, React, TypeScript, JavaScript, HTML, and CSS.",
     tags: [
       "VSCode",
       "Theme",

@@ -41,7 +41,7 @@ Extreme monitoring for developers who refuse to accept failure. Brutal tools for
 
 ### 🎨 Pittaya Theme
 
-A minimalist theme for VSCode, Cursor, Windsurf, and other VSCode-based IDEs. Elegant dark and light modes, open-source, with 400+ downloads across all marketplaces.
+A minimalist theme for VSCode, Cursor, Windsurf, and other VSCode-based IDEs. Elegant dark and light modes, open-source, with 1.1k+ downloads across all marketplaces.
 
 - VSCode · Cursor · Windsurf · Dark Mode · Light Mode · Open Source
 - 🔗 [VS Marketplace](https://marketplace.visualstudio.com/items?itemName=pittaya-org.pittaya-theme) · [GitHub](https://github.com/pittaya-ui/pittaya-theme)
